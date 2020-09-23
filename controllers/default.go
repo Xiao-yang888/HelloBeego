@@ -16,7 +16,7 @@ func (c *MainController) Get () {
 	sex := c.Ctx.Input.Query("sex")
 	fmt.Println(name,age,sex)
 	//以admin，18为正确数据进行验证
-	if name != "曾洋" || age != "20" || sex != "male"{
+	if name != "zengyang" || age != "20" || sex != "male"{
 		c.Ctx.ResponseWriter.Write([]byte("数据验证错误"))
 		return
 	}
