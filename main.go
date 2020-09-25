@@ -1,9 +1,10 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
-	_ "hellobeego/routers"
 	"github.com/astaxie/beego"
+	_ "hellobeego/routers"
 )
 
 func main() {
@@ -18,6 +19,19 @@ func main() {
 		panic("项目配置信息解析错误，请查验后重试")
 	}
 	fmt.Println("应用监听窗口",port)
+
+	driver := config.String("db_driver")//数据库驱动
+	dbUser := config.String("db_user")
+	dbPassed := config.String("db_password")
+	dbIp := config.String("db_ip")
+	dbName := config.String("db_name")
+
+	db,err := sql.Open(driver,dbUser+":"+dbPassed+"@tcp("+dbIp+")/"+dbName+"?charset=utf8")
+	if err != nil {
+		panic("数据连接打开失败，请重试")
+	}
+	fmt.Println(db)
+
 	beego.Run()
 }
 
