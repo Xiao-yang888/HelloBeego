@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/astaxie/beego"
+	_ "github.com/go-sql-driver/mysql"
 	_ "hellobeego/routers"
 )
 
